@@ -36,7 +36,7 @@ letter-spacing:2px;
 h2{
 font-size:24px;
 font-weight:300;
-margin-bottom:30px;
+margin-bottom: 60px; /* increased margin */
 }
 
 button{
@@ -72,7 +72,7 @@ to{opacity:1;}
 #loveText{
 display:none;
 position:fixed;
-top:40%;
+top:55%; /* moved down */
 left:50%;
 transform:translate(-50%,-50%);
 font-size:50px;
@@ -164,32 +164,34 @@ button.style.top = y + "px";
 
 function correctChoice(){
 
-document.getElementById("message").style.display="block";
-document.getElementById("loveText").style.display="block";
+  // Hide both buttons when "Of Course Yes" clicked
+  document.getElementById("runBtn").style.display = "none";
+  document.querySelector("#valentine button:nth-of-type(2)").style.display = "none";
 
-var photo = document.getElementById("photo");
-setTimeout(function(){
-photo.style.opacity="1";
-},500);
+  document.getElementById("message").style.display = "block";
+  document.getElementById("loveText").style.display = "block";
 
-// Soft Confetti
-for (let i = 0; i < 80; i++) {
-    var confetti = document.createElement("div");
-    confetti.innerHTML = "❤";
-    confetti.style.position = "fixed";
-    confetti.style.left = Math.random() * 100 + "vw";
-    confetti.style.top = "-10px";
-    confetti.style.fontSize = "18px";
-    confetti.style.animation = "fall 4s linear forwards";
-    document.body.appendChild(confetti);
+  var photo = document.getElementById("photo");
+  setTimeout(function(){
+    photo.style.opacity="1";
+  },500);
 
-    setTimeout(function(){
-        confetti.remove();
-    },4000);
+  // Soft Confetti
+  for (let i = 0; i < 80; i++) {
+      var confetti = document.createElement("div");
+      confetti.innerHTML = "❤";
+      confetti.style.position = "fixed";
+      confetti.style.left = Math.random() * 100 + "vw";
+      confetti.style.top = "-10px";
+      confetti.style.fontSize = "18px";
+      confetti.style.animation = "fall 4s linear forwards";
+      document.body.appendChild(confetti);
+
+      setTimeout(function(){
+          confetti.remove();
+      },4000);
+  }
 }
-
-}
-
 </script>
 
 </body>
