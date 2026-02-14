@@ -112,8 +112,8 @@ animation:float 6s linear infinite;
 <button onclick="showMessage()">Of Course Yes 💍</button>
 
 <div id="message">
-You just made me the happiest girl alive 😘💖  
-Forever & Always, My Love ❤️✨  
+You just made me the happiest girl alive 😘💖<br>
+Forever & Always, My Love ❤️✨
 </div>
 
 </div>
@@ -121,6 +121,11 @@ Forever & Always, My Love ❤️✨
 </div>
 
 <script>
+
+// IMPORTANT: make sure this filename matches your uploaded mp3 exactly
+var audio = new Audio("ishq-di-galiyan.mp3");
+audio.loop = true;
+
 function checkLogin(){
 var user=document.getElementById("username").value;
 var pass=document.getElementById("password").value;
@@ -128,6 +133,7 @@ var pass=document.getElementById("password").value;
 if(user==="rahul" && pass==="love123"){
 document.getElementById("login").style.display="none";
 document.getElementById("valentine").style.display="block";
+audio.play();  // 🎵 music starts after login
 }
 else{
 alert("Wrong Password 😢 Try Again!");
@@ -150,12 +156,8 @@ setTimeout(function(){
 heart.remove();
 },6000);
 },400);
-</script>
 
-  <audio autoplay loop>
-  <source src="ishq-di-galiyan.mp3" type="audio/mp3">
-  Your browser does not support the audio element.
-</audio>
+</script>
 
 </body>
 </html>
