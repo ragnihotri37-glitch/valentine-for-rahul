@@ -2,16 +2,16 @@
 <html>
 <head>
 <title>For My Baby 💖</title>
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
 
 <style>
 body{
 margin:0;
 font-family:'Poppins', sans-serif;
 text-align:center;
-background:linear-gradient(135deg,#ff9a9e,#fecfef,#fad0c4);
-overflow:hidden;
+background:linear-gradient(to bottom,#fbc2eb,#a6c1ee);
 color:white;
+overflow:hidden;
 }
 
 .container{
@@ -19,42 +19,31 @@ margin-top:120px;
 }
 
 .box{
-background:rgba(255,255,255,0.2);
+background:rgba(255,255,255,0.15);
 padding:40px;
 border-radius:20px;
 display:inline-block;
-backdrop-filter:blur(10px);
-box-shadow:0 0 30px rgba(255,255,255,0.4);
+backdrop-filter:blur(12px);
+box-shadow:0 10px 40px rgba(0,0,0,0.2);
 }
 
 h1{
-font-family:'Pacifico', cursive;
-font-size:40px;
+font-family:'Playfair Display', serif;
+font-size:42px;
+letter-spacing:2px;
 }
 
 h2{
-font-size:28px;
-animation: glow 1.5s infinite alternate;
-}
-
-@keyframes glow{
-from{ text-shadow:0 0 10px white; }
-to{ text-shadow:0 0 25px red; }
-}
-
-input{
-padding:12px;
-margin:10px;
-border:none;
-border-radius:20px;
-outline:none;
+font-size:24px;
+font-weight:300;
+margin-bottom:30px;
 }
 
 button{
-padding:12px 25px;
+padding:12px 28px;
 margin:10px;
-background:#ff4d6d;
-color:white;
+background:white;
+color:#ff4d6d;
 border:none;
 border-radius:30px;
 font-size:16px;
@@ -64,12 +53,13 @@ transition:0.3s;
 
 button:hover{
 transform:scale(1.1);
-background:#ff1e56;
+background:#ff4d6d;
+color:white;
 }
 
 #message{
-font-size:24px;
 margin-top:20px;
+font-size:20px;
 display:none;
 animation:fadeIn 2s ease-in-out;
 }
@@ -79,21 +69,32 @@ from{opacity:0;}
 to{opacity:1;}
 }
 
-.heart{
-position:absolute;
+#loveText{
+display:none;
+position:fixed;
+top:40%;
+left:50%;
+transform:translate(-50%,-50%);
+font-size:50px;
+font-weight:bold;
+font-family:'Playfair Display', serif;
 color:white;
-font-size:20px;
-animation:float 6s linear infinite;
+text-shadow:0 0 20px rgba(255,255,255,0.8);
+animation:pulse 1.5s infinite alternate;
 }
 
-@keyframes float{
-0%{transform:translateY(100vh);}
-100%{transform:translateY(-10vh);}
+@keyframes pulse{
+from{transform:translate(-50%,-50%) scale(1);}
+to{transform:translate(-50%,-50%) scale(1.1);}
 }
 
-@keyframes pop {
-from { transform: translate(-50%, -50%) scale(1); }
-to { transform: translate(-50%, -50%) scale(1.2); }
+img{
+width:260px;
+border-radius:20px;
+margin-top:20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
+opacity:0;
+transition:2s;
 }
 
 @keyframes fall {
@@ -110,28 +111,31 @@ to { transform: translateY(100vh); }
 <h1>Login for Rahul 💕</h1>
 <input type="text" id="username" placeholder="Username"><br>
 <input type="password" id="password" placeholder="Password"><br>
-<button onclick="checkLogin()">Enter My Heart 💖</button>
+<button onclick="checkLogin()">Enter 💖</button>
 </div>
 
 <div class="box" id="valentine" style="display:none;">
 <h1>Baby 💖</h1>
-<h2>Will You Be My Valentine? 🌹</h2>
+<h2>Will You Be My Valentine?</h2>
 
-<button id="runBtn" onmouseover="moveButton()">Yes 💕</button>
-<button onclick="correctChoice()">Of Course Yes 💍</button>
+<button id="runBtn" onmouseover="moveButton()">Yes</button>
+<button onclick="correctChoice()">Of Course Yes</button>
 
 <div id="message">
-You just made me the happiest girl alive 😘💖<br>
-Forever & Always, My Baby ❤️✨
+You just made me the happiest girl alive 💕<br>
+Forever & Always, My Baby ✨
 </div>
+
+<img id="photo" src="IMG20231103155014.jpg">
 
 </div>
 
 </div>
+
+<div id="loveText">I LOVE YOU BABY 💖</div>
 
 <script>
 
-// 🎵 Make sure this filename matches your uploaded MP3 exactly
 var audio = new Audio("ishq-di-galiyan.mp3");
 audio.loop = true;
 
@@ -145,7 +149,7 @@ document.getElementById("valentine").style.display="block";
 audio.play();
 }
 else{
-alert("Wrong Password 😢 Try Again!");
+alert("Wrong Password 😢");
 }
 }
 
@@ -161,81 +165,30 @@ button.style.top = y + "px";
 function correctChoice(){
 
 document.getElementById("message").style.display="block";
+document.getElementById("loveText").style.display="block";
 
-// 💖 BIG LOVE TEXT
-var loveText = document.createElement("div");
-loveText.innerHTML = "💖 I LOVE YOU BABY 💖";
-loveText.style.position = "fixed";
-loveText.style.top = "35%";
-loveText.style.left = "50%";
-loveText.style.transform = "translate(-50%, -50%)";
-loveText.style.fontSize = "50px";
-loveText.style.fontWeight = "bold";
-loveText.style.color = "white";
-loveText.style.textShadow = "0 0 20px red";
-loveText.style.animation = "pop 1s infinite alternate";
-document.body.appendChild(loveText);
-
-// 📸 SHOW PHOTO (Make sure file name matches)
-var photo = document.createElement("img");
-photo.src = "IMG20231103155014.jpg";
-photo.style.position = "fixed";
-photo.style.bottom = "10%";
-photo.style.left = "50%";
-photo.style.transform = "translateX(-50%)";
-photo.style.width = "250px";
-photo.style.borderRadius = "20px";
-photo.style.boxShadow = "0 0 20px white";
-photo.style.opacity = "0";
-photo.style.transition = "2s";
-document.body.appendChild(photo);
-
+var photo = document.getElementById("photo");
 setTimeout(function(){
-photo.style.opacity = "1";
+photo.style.opacity="1";
 },500);
 
-// 🎉 CONFETTI
-for (let i = 0; i < 120; i++) {
+// Soft Confetti
+for (let i = 0; i < 80; i++) {
     var confetti = document.createElement("div");
-    confetti.innerHTML = "🎉";
+    confetti.innerHTML = "❤";
     confetti.style.position = "fixed";
     confetti.style.left = Math.random() * 100 + "vw";
     confetti.style.top = "-10px";
-    confetti.style.fontSize = "25px";
-    confetti.style.animation = "fall 3s linear forwards";
+    confetti.style.fontSize = "18px";
+    confetti.style.animation = "fall 4s linear forwards";
     document.body.appendChild(confetti);
 
     setTimeout(function(){
         confetti.remove();
-    },3000);
+    },4000);
 }
 
-// 💍 RING
-var ring = document.createElement("div");
-ring.innerHTML = "💍";
-ring.style.position = "fixed";
-ring.style.top = "60%";
-ring.style.left = "50%";
-ring.style.transform = "translate(-50%, -50%)";
-ring.style.fontSize = "60px";
-ring.style.animation = "pop 1s infinite alternate";
-document.body.appendChild(ring);
-
 }
-
-// ❤️ Floating hearts always
-setInterval(function(){
-var heart=document.createElement("div");
-heart.className="heart";
-heart.innerHTML="❤";
-heart.style.left=Math.random()*100+"vw";
-heart.style.fontSize=(Math.random()*20+20)+"px";
-document.body.appendChild(heart);
-
-setTimeout(function(){
-heart.remove();
-},6000);
-},400);
 
 </script>
 
