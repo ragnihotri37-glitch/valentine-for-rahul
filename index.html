@@ -36,7 +36,7 @@ h1{
 h2{
   font-size:24px;
   font-weight:300;
-  margin-bottom:60px; /* space below question */
+  margin-bottom:60px;
 }
 
 button{
@@ -65,8 +65,8 @@ button:hover{
 }
 
 @keyframes fadeIn{
-  from{opacity:0;}
-  to{opacity:1;}
+from{opacity:0;}
+to{opacity:1;}
 }
 
 #loveText {
@@ -83,8 +83,8 @@ button:hover{
 }
 
 @keyframes pulse{
-  from{transform:scale(1);}
-  to{transform:scale(1.1);}
+from{transform:scale(1);}
+to{transform:scale(1.1);}
 }
 
 img{
@@ -97,19 +97,19 @@ img{
 }
 
 @keyframes fall {
-  to { transform: translateY(100vh); }
+to { transform: translateY(100vh); }
 }
 
 .heart{
-  position:absolute;
-  color:white;
-  font-size:20px;
-  animation:float 6s linear infinite;
+position:absolute;
+color:white;
+font-size:20px;
+animation:float 6s linear infinite;
 }
 
 @keyframes float{
-  0%{transform:translateY(100vh);}
-  100%{transform:translateY(-10vh);}
+0%{transform:translateY(100vh);}
+100%{transform:translateY(-10vh);}
 }
 </style>
 </head>
@@ -127,9 +127,9 @@ img{
 
   <div class="box" id="valentine" style="display:none;">
     <h1>Baby 💖</h1>
-    <h2>Will You Be My Valentine?</h2>
+    <h2 id="question">Will You Be My Valentine?</h2>
 
-    <button id="runBtn" onmouseover="moveButton()">Yes</button>
+    <button id="runBtn" onmouseover="yesClicked()">Yes</button>
     <button onclick="correctChoice()">Of Course Yes</button>
 
     <div id="message">
@@ -161,22 +161,27 @@ function checkLogin(){
   }
 }
 
-function moveButton(){
-  var button = document.getElementById("runBtn");
-  var x = Math.random() * (window.innerWidth - 150);
-  var y = Math.random() * (window.innerHeight - 100);
-  button.style.position = "absolute";
-  button.style.left = x + "px";
-  button.style.top = y + "px";
-}
-
-function correctChoice(){
-
+// Yes button misclick function
+function yesClicked(){
   // Hide buttons
   document.getElementById("runBtn").style.display = "none";
   document.querySelector("#valentine button:nth-of-type(2)").style.display = "none";
+  // Hide question
+  document.getElementById("question").style.display = "none";
+  // Show playful hint message
+  document.getElementById("message").innerHTML = "Oops! You have to choose 'Of Course Yes' 😘";
+  document.getElementById("message").style.display = "block";
+}
+
+// Of Course Yes function
+function correctChoice(){
+  // Hide buttons and question
+  document.getElementById("runBtn").style.display = "none";
+  document.querySelector("#valentine button:nth-of-type(2)").style.display = "none";
+  document.getElementById("question").style.display = "none";
 
   // Show message and love text
+  document.getElementById("message").innerHTML = "You just made me the happiest girl alive 💕<br>Forever & Always, My Baby ✨";
   document.getElementById("message").style.display = "block";
   document.getElementById("loveText").style.display = "block";
 
@@ -186,7 +191,7 @@ function correctChoice(){
     photo.style.opacity="1";
   },500);
 
-  // Floating hearts confetti
+  // Soft confetti
   for (let i = 0; i < 80; i++) {
     var confetti = document.createElement("div");
     confetti.innerHTML = "❤";
@@ -203,7 +208,7 @@ function correctChoice(){
   }
 }
 
-// Floating hearts in background continuously
+// Floating hearts in background
 setInterval(function(){
   var heart=document.createElement("div");
   heart.className="heart";
@@ -216,6 +221,7 @@ setInterval(function(){
     heart.remove();
   },6000);
 },400);
+
 </script>
 
 </body>
