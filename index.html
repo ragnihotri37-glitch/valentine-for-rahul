@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>For Rahul 💖</title>
+<title>For My Baby 💖</title>
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
 
 <style>
@@ -90,6 +90,15 @@ animation:float 6s linear infinite;
 0%{transform:translateY(100vh);}
 100%{transform:translateY(-10vh);}
 }
+
+@keyframes pop {
+from { transform: translate(-50%, -50%) scale(1); }
+to { transform: translate(-50%, -50%) scale(1.2); }
+}
+
+@keyframes fall {
+to { transform: translateY(100vh); }
+}
 </style>
 </head>
 
@@ -105,15 +114,15 @@ animation:float 6s linear infinite;
 </div>
 
 <div class="box" id="valentine" style="display:none;">
-<h1>Rahul 💖</h1>
+<h1>Baby 💖</h1>
 <h2>Will You Be My Valentine? 🌹</h2>
 
-<button onclick="showMessage()">Yes 💕</button>
-<button onclick="showMessage()">Of Course Yes 💍</button>
+<button id="runBtn" onmouseover="moveButton()">Yes 💕</button>
+<button onclick="correctChoice()">Of Course Yes 💍</button>
 
 <div id="message">
 You just made me the happiest girl alive 😘💖<br>
-Forever & Always, My Love ❤️✨
+Forever & Always, My Baby ❤️✨
 </div>
 
 </div>
@@ -122,7 +131,7 @@ Forever & Always, My Love ❤️✨
 
 <script>
 
-// IMPORTANT: make sure this filename matches your uploaded mp3 exactly
+// 🎵 Make sure this filename matches your uploaded MP3 exactly
 var audio = new Audio("ishq-di-galiyan.mp3");
 audio.loop = true;
 
@@ -133,17 +142,88 @@ var pass=document.getElementById("password").value;
 if(user==="rahul" && pass==="love123"){
 document.getElementById("login").style.display="none";
 document.getElementById("valentine").style.display="block";
-audio.play();  // 🎵 music starts after login
+audio.play();
 }
 else{
 alert("Wrong Password 😢 Try Again!");
 }
 }
 
-function showMessage(){
-document.getElementById("message").style.display="block";
+function moveButton(){
+var button = document.getElementById("runBtn");
+var x = Math.random() * (window.innerWidth - 150);
+var y = Math.random() * (window.innerHeight - 100);
+button.style.position = "absolute";
+button.style.left = x + "px";
+button.style.top = y + "px";
 }
 
+function correctChoice(){
+
+document.getElementById("message").style.display="block";
+
+// 💖 BIG LOVE TEXT
+var loveText = document.createElement("div");
+loveText.innerHTML = "💖 I LOVE YOU BABY 💖";
+loveText.style.position = "fixed";
+loveText.style.top = "35%";
+loveText.style.left = "50%";
+loveText.style.transform = "translate(-50%, -50%)";
+loveText.style.fontSize = "50px";
+loveText.style.fontWeight = "bold";
+loveText.style.color = "white";
+loveText.style.textShadow = "0 0 20px red";
+loveText.style.animation = "pop 1s infinite alternate";
+document.body.appendChild(loveText);
+
+// 📸 SHOW PHOTO (Make sure file name matches)
+var photo = document.createElement("img");
+photo.src = "us.jpg";
+photo.style.position = "fixed";
+photo.style.bottom = "10%";
+photo.style.left = "50%";
+photo.style.transform = "translateX(-50%)";
+photo.style.width = "250px";
+photo.style.borderRadius = "20px";
+photo.style.boxShadow = "0 0 20px white";
+photo.style.opacity = "0";
+photo.style.transition = "2s";
+document.body.appendChild(photo);
+
+setTimeout(function(){
+photo.style.opacity = "1";
+},500);
+
+// 🎉 CONFETTI
+for (let i = 0; i < 120; i++) {
+    var confetti = document.createElement("div");
+    confetti.innerHTML = "🎉";
+    confetti.style.position = "fixed";
+    confetti.style.left = Math.random() * 100 + "vw";
+    confetti.style.top = "-10px";
+    confetti.style.fontSize = "25px";
+    confetti.style.animation = "fall 3s linear forwards";
+    document.body.appendChild(confetti);
+
+    setTimeout(function(){
+        confetti.remove();
+    },3000);
+}
+
+// 💍 RING
+var ring = document.createElement("div");
+ring.innerHTML = "💍";
+ring.style.position = "fixed";
+ring.style.top = "60%";
+ring.style.left = "50%";
+ring.style.transform = "translate(-50%, -50%)";
+ring.style.fontSize = "60px";
+ring.style.animation = "pop 1s infinite alternate";
+document.body.appendChild(ring);
+
+}
+
+// ❤️ Floating hearts always
 setInterval(function(){
 var heart=document.createElement("div");
 heart.className="heart";
